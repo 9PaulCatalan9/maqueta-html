@@ -1,0 +1,45 @@
+// Definir variables de color para el formulario
+$color-form: #c4ffa8;
+$color-input-background: #f0f0f0; 
+$color-input-border: #ced4da; 
+$color-input-text: #495057; 
+$color-boton:#afb3e2;
+
+// Estilos para la clase .formulario
+.formulario {
+  background-color: $color-form;
+  border-radius: 10px;
+  border: 2px solid #ced4da;
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto; 
+}
+
+// Estilos para los inputs de texto y fecha
+input[type="text"],
+input[type="date"] {
+  background-color: $color-input-background;
+  border: 1px solid $color-input-border;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+  color: $color-input-text;
+}
+
+// Estilos para el botón
+button[type="submit"] {
+  background-color:$color-boton;; // Color de fondo del botón
+  border: none;
+  border-radius: 35px;
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 90%;
+}
+
+button[type="submit"]:hover {
+  background-color: #c7c9e5;
+  
+}

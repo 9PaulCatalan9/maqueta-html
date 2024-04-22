@@ -1,0 +1,42 @@
+$bg-gradient: linear-gradient(to top, #c4ffa8, #1aff00);
+
+.bg-body-tertiary{
+ background-image: $bg-gradient;
+ border-bottom-left-radius: 14px;
+ border-bottom-right-radius: 14px;
+  padding: 10px 20px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.326);
+  margin-bottom: 30px;
+}
+
+
+.bg-body-tertiary .nav-link {
+  color: #333;
+  font-weight:bold; 
+}
+
+.bg-body-tertiary .nav-link:hover {
+  color: #555;
+}
+@keyframes floating {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.bg-body-tertiary .navbar-brand img {
+  animation: floating 3s infinite; 
+  float: left;
+  margin-right: 10px;
+}
+
+.navbar-brand .logo{
+  width: 25px; 
+  height: 25px;
+}

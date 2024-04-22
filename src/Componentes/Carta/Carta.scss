@@ -1,0 +1,20 @@
+$color-interior:#c4ffa8;
+$color-boton:#afb3e2;
+.card{
+    background-color: $color-interior;
+    border-bottom-left-radius: 10px ;
+    border-top-right-radius: 25px;
+    border: 2px solid #ced4da;
+    margin-top: 30px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.326);
+
+
+}
+.card .btn-primary{
+    background-color: $color-boton;
+    width: 90%;
+    border-radius: 35px;
+    &:hover{
+        background-color: #c7c9e5;
+    }
+}
