@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import './Carta.scss'
 function Carta() {
   return (
-    <Card id="id-card" style={{ width: '18rem' }}>
+    <Card id="id-card" style={{ width: '27rem' }}>
       <Card.Body>
         <Card.Title className='fw-bold'>Actividad 1 DAW</Card.Title>
         <Card.Title className='fw-bold'>Descripcion</Card.Title>

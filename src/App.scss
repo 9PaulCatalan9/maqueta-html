@@ -38,3 +38,23 @@
     transform: rotate(360deg);
   }
 }
+.scrolling{
+  max-height: 1200px;
+  overflow-y:auto;
+  max-height: 400px;
+
+}
+.overlapping-div { 
+  position: absolute; 
+  z-index: 100; /* Adjust the z-index value as needed */ 
+  text-align: left;
+
+
+}
+
+.float-left {
+  position: fixed;
+  top: 50px;
+  left: 20px; 
+  z-index: 999; 
+}
