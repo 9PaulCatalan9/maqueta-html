@@ -1,0 +1,10 @@
+
+$color-boton:#afb3e2;
+#btn-add{
+    background-color: $color-boton;
+
+    border-radius: 35px;
+    &:hover{
+        background-color: #c7c9e5;
+    }
+}
