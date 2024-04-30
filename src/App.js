@@ -7,7 +7,12 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import 'bootstrap/dist/css/bootstrap.min.css';
+//acceder al estado directamente
+import { useSelector } from 'react-redux'
 export function App(props) {
+      const todos=useSelector((state)=>state.todos.value)
+
+
 
   return (
     <div className='App'>
@@ -22,11 +27,13 @@ export function App(props) {
     </Row>
     <Row>
       <div  className='scrolling'>
-    <Carta></Carta>
-     <Carta></Carta>
-     <Carta></Carta>
-     <Carta></Carta>
-     <Carta></Carta>
+
+        {todos.map((tarea)=>(
+
+        <Carta nombre={tarea.nombre} descripcion={tarea.descripcion} fechaEntrega={tarea.fechaEntrega}></Carta>
+        
+        ))
+        }
      </div>
     </Row>
     </Col>

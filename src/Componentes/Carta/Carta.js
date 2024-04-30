@@ -1,19 +1,18 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import './Carta.scss'
-function Carta() {
+function Carta(props) {
   return (
-    <Card id="id-card" style={{ width: '27rem' }}>
+    <Card id="id-card" style={{ width: '30rem' }}>
       <Card.Body>
-        <Card.Title className='fw-bold'>Actividad 1 DAW</Card.Title>
+        <Card.Title className='fw-bold'>{props.nombre}</Card.Title>
         <Card.Title className='fw-bold'>Descripcion</Card.Title>
         <Card.Text>
-        Diseñar la maqueta html del diseño proporcionado, exportarlo a
-        playcode y  subirlo a un repositorio de github
+        {props.descripcion}
         </Card.Text>
         <Card.Title className='fw-bold'>Fecha de vencimiento</Card.Title>
         <Card.Text className='fst-italic'>
-         22/04/2024
+        {props.fechaEntrega}
         </Card.Text>
         <Card.Title></Card.Title>
         <Button variant="primary">Remover meta</Button>
