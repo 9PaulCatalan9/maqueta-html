@@ -3,22 +3,54 @@ import {createSlice} from "@reduxjs/toolkit";
 export const todoSlice = createSlice({
     name:"todos", //estados de tareas
     initialState:{
-        value:[
-            {
-            "nombre":"Realizar actividad 1",
-            "descripcion":"Instalar paquetes de librerias para tarea 1",
-            "fechaEntrega":"29-4-2024"
-            }
-    ]
+        value:[]
     },
 
     // esctructura que se debe mantener
     reducers:{
         addTodo:(state,action)=>{
             state.value.push(action.payload)
+            fetch("http://localhost:3001/tasks/addTask",{
+
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json",
+                    "Authorization":"9MyAPIkey9"
+                },
+                body: JSON.stringify(action.payload)
+            }).catch(err=>{
+                console.log(err)
+            })
+        },
+        removeTodo:(state,action)=>{
+            state.value=state.value.filter((task)=>task.id!==action.payload);
+            fetch("http://localhost:3001/tasks/removeTask"+action.payload,{
+
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json",
+                    "Authorization":"9MyAPIkey9"
+                },
+            }).catch(err=>{
+                console.log(err)
+            })
+        },
+        deleteTodo:(state,action)=>{
+            console.log(action)
+            const todoComplete=state.value.find((tarea)=>tarea.id===action.payload)
+            state.value=state.value.filter((tarea)=>tarea.id!==action.payload)
+            if(!state.todoComplete){
+                state.todoComplete=[]
+            }
+            state.todoComplete.push(todoComplete)
+        },
+        initAddTodo:(state,action)=>{
+            console.log(action.payload)
+            state.value.push(action.payload)
         }
     }
 })
 
-export const{addTodo}=todoSlice.actions; //exportar a todo el proyecto
+export const{addTodo,deleteTodo,initAddTodo,removeTodo}=todoSlice.actions; //exportar a todo el proyecto
+export const selectTodo=(state)=>state.tarea.value
 export default todoSlice.reducer; //Por default el reducer

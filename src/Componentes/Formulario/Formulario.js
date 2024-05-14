@@ -4,26 +4,40 @@ import './Formulario.scss'
 import {
   addTodo
 } from "../../reducers/todoSlice";
-import { useDispatch } from 'react-redux';
+import {
+  addMeta
+} from "../../reducers/metasSlice";
+import {useSelector, useDispatch } from 'react-redux';
 import { useRef } from 'react';
 
 function Formulario() {
-  //Para acceder al formulario
-  const inputRefName=useRef();
-  const inputRefDesc=useRef();
-  const inputRefFecha=useRef();
+  const inputRefName = useRef();
+  const inputRefDesc = useRef();
+  const inputRefFecha = useRef();
+  const dispatch = useDispatch();
+  const opcion = useSelector((state) => state.opcion.value);
 
-  //Funcion para dispatch
 
-  const dispatch=useDispatch();
-  const addCarta=(e)=>{
-    //Controlar evento para que no acceda al evento por default
+    const generarID=()=>{
+      const min = 1000
+      const max = 9999
+      return Math.floor(Math.random()*(max-min +1))+min
+    }
+  const addTareaOMeta = (e) => {
     e.preventDefault();
-    dispatch(addTodo(
-      {
-    "nombre":inputRefName.current.value,
-    "descripcion":inputRefDesc.current.value,
-    "fechaEntrega":inputRefFecha.current.value} ))
+    const tareaOMeta = {
+      "id":generarID(),
+      "nombre": inputRefName.current.value,
+      "descripcion": inputRefDesc.current.value,
+      "fechaEntrega": inputRefFecha.current.value,
+      "completada":false
+    };
+
+    if (opcion === 'tareas') {
+      dispatch(addTodo(tareaOMeta)); // Agregar nueva tarea
+    } else {
+      dispatch(addMeta(tareaOMeta)); // Agregar nueva meta
+    }
   }
 
 
@@ -43,10 +57,12 @@ function Formulario() {
         <Form.Label>Fecha de vencimiento</Form.Label>
         <Form.Control type="date" ref={inputRefFecha}/>
       </Form.Group>
-     
-      <Button variant="primary" type="submit" onClick={addCarta}>
-        Añadir tarea
-      </Button>
+     {opcion==="tareas"&&
+     <Button variant='primary' type='submit' onClick={addTareaOMeta}>Nueva tarea</Button>
+     }
+     {opcion==="metas"&&
+     <Button variant='primary' type='submit' onClick={addTareaOMeta}>Nueva meta</Button>
+     }
     </Form>
   );
 }

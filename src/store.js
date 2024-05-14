@@ -1,11 +1,13 @@
 // maneja todos los estados de nuestro proyecto
 import { configureStore } from "@reduxjs/toolkit"
 import todoReducer from "./reducers/todoSlice"
-import metasReducer from "./reducers/metasSlice"
+import metaReducer from "./reducers/metasSlice"
+import opcionReducer from "./reducers/opcionSlice"
 export default configureStore({
     reducer:{
         todos:todoReducer,
-        metas:metasReducer
+        meta:metaReducer,
+        opcion:opcionReducer
     }
 
 })
