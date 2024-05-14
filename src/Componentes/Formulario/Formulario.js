@@ -18,7 +18,7 @@ function Formulario() {
   const opcion = useSelector((state) => state.opcion.value);
 
 
-    const generarID=()=>{
+    const generarId=()=>{
       const min = 1000
       const max = 9999
       return Math.floor(Math.random()*(max-min +1))+min
@@ -26,7 +26,7 @@ function Formulario() {
   const addTareaOMeta = (e) => {
     e.preventDefault();
     const tareaOMeta = {
-      "id":generarID(),
+      "id":generarId(),
       "nombre": inputRefName.current.value,
       "descripcion": inputRefDesc.current.value,
       "fechaEntrega": inputRefFecha.current.value,

@@ -26,7 +26,7 @@ export const todoSlice = createSlice({
             state.value=state.value.filter((task)=>task.id!==action.payload);
             fetch("http://localhost:3001/tasks/removeTask"+action.payload,{
 
-                method:"POST",
+                method:"DELETE",
                 headers:{
                     "Content-Type":"application/json",
                     "Authorization":"9MyAPIkey9"

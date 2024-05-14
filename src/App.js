@@ -14,7 +14,7 @@ se ejecuta cada vez que se renderiza un componente
 */
 import { useEffect } from 'react'
 import {
-  initAddTodo
+  initAddTodo,
 } from "./reducers/todoSlice"
 
 
