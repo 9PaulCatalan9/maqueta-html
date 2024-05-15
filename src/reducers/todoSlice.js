@@ -22,10 +22,11 @@ export const todoSlice = createSlice({
                 console.log(err)
             })
         },
-        removeTodo:(state,action)=>{
-            state.value=state.value.filter((task)=>task.id!==action.payload);
-            fetch("http://localhost:3001/tasks/removeTask"+action.payload,{
-
+        deleteTodo:(state,action)=>{
+            console.log(action)
+           // const todoComplete=state.value.find((tarea)=>tarea.id===action.payload)
+            state.value=state.value.filter((tarea)=>tarea.id!==action.payload)
+            fetch("http://localhost:3001/tasks/removeTask/"+action.payload,{
                 method:"DELETE",
                 headers:{
                     "Content-Type":"application/json",
@@ -34,15 +35,10 @@ export const todoSlice = createSlice({
             }).catch(err=>{
                 console.log(err)
             })
-        },
-        deleteTodo:(state,action)=>{
-            console.log(action)
-            const todoComplete=state.value.find((tarea)=>tarea.id===action.payload)
-            state.value=state.value.filter((tarea)=>tarea.id!==action.payload)
-            if(!state.todoComplete){
+          /*  if(!state.todoComplete){
                 state.todoComplete=[]
             }
-            state.todoComplete.push(todoComplete)
+           state.todoComplete.push(todoComplete)*/
         },
         initAddTodo:(state,action)=>{
             console.log(action.payload)
@@ -51,6 +47,6 @@ export const todoSlice = createSlice({
     }
 })
 
-export const{addTodo,deleteTodo,initAddTodo,removeTodo}=todoSlice.actions; //exportar a todo el proyecto
+export const{addTodo,deleteTodo,initAddTodo}=todoSlice.actions; //exportar a todo el proyecto
 export const selectTodo=(state)=>state.tarea.value
 export default todoSlice.reducer; //Por default el reducer

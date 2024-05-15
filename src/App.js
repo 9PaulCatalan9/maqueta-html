@@ -16,7 +16,9 @@ import { useEffect } from 'react'
 import {
   initAddTodo,
 } from "./reducers/todoSlice"
-
+import {
+  initAddMeta 
+} from "./reducers/metasSlice"
 
 export function App(props) {
 
@@ -26,21 +28,39 @@ export function App(props) {
     //peticion inicial
     const dispatch=useDispatch();
     function initFetch(){
-      fetch("http://localhost:3001/tasks/getTasks",{
-        method:"GET",
-        headers:{
-            "Content-Type":"application/json",
-            "Authorization":"9MyAPIkey9"
-        }
-    }).then((response)=>
-      response.json()
-    ).then((response)=>{
-      response.map((task)=>{
-        dispatch(initAddTodo(task));
+      if(opcion==="tareas"){
+        fetch("http://localhost:3001/tasks/getTasks",{
+          method:"GET",
+          headers:{
+              "Content-Type":"application/json",
+              "Authorization":"9MyAPIkey9"
+          }
+      }).then((response)=>
+        response.json()
+      ).then((response)=>{
+        response.map((task)=>{
+          dispatch(initAddTodo(task));
+        })
+      }).catch(err=>{
+          console.log(err);
       })
-    }).catch(err=>{
-        console.log(err);
-    })
+      }else if(opcion==="metas"){
+        fetch("http://localhost:3001/goals/getGoals",{
+          method:"GET",
+          headers:{
+              "Content-Type":"application/json",
+              "Authorization":"9MyAPIkey9"
+          }
+      }).then((response)=>
+        response.json()
+      ).then((response)=>{
+        response.map((goal)=>{
+          dispatch(initAddMeta(goal));
+        })
+      }).catch(err=>{
+          console.log(err);
+      })
+      }
     }
   //codigo para llenar las tarjetas dependiendo del estado
   let contenido=null

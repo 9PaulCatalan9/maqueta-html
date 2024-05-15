@@ -12,11 +12,13 @@ function Carta(props) {
   const opcion= useSelector((state)=>state.opcion.value)
   const dispatch=useDispatch()
 
-  const removerMetaOTarea=(id)=>{
+  const removerMetaOTarea=(e)=>{
     if(opcion==="tareas"){
-      dispatch(deleteTodo(id))
+      e.preventDefault();
+      dispatch(deleteTodo(props.id))
     }else if(opcion==="metas"){
-      dispatch(deleteMeta(id))
+      e.preventDefault();
+      dispatch(deleteMeta(props.id))
     }
 }
   return (
@@ -35,11 +37,11 @@ function Carta(props) {
         </Card.Text>
         <Card.Title></Card.Title>
         { opcion==="tareas"&&
-                  <Button variant="primary" onClick={()=>removerMetaOTarea(props.id)}>Remover tarea</Button>
+                  <Button variant="primary" onClick={removerMetaOTarea}>Remover tarea</Button>
         }
         {
           opcion==="metas"&&
-          <Button variant="primary" onClick={()=>removerMetaOTarea(props.id)}>Remover meta</Button>
+          <Button variant="primary" onClick={removerMetaOTarea}>Remover meta</Button>
 
         }
       </Card.Body>
