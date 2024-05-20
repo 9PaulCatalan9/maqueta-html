@@ -27,41 +27,38 @@ export function App(props) {
       const meta=useSelector((state)=>state.meta.value)
     //peticion inicial
     const dispatch=useDispatch();
-    function initFetch(){
-      if(opcion==="tareas"){
-        fetch("http://localhost:3001/tasks/getTasks",{
-          method:"GET",
-          headers:{
-              "Content-Type":"application/json",
-              "Authorization":"9MyAPIkey9"
-          }
-      }).then((response)=>
-        response.json()
-      ).then((response)=>{
-        response.map((task)=>{
-          dispatch(initAddTodo(task));
-        })
-      }).catch(err=>{
-          console.log(err);
-      })
-      }else if(opcion==="metas"){
-        fetch("http://localhost:3001/goals/getGoals",{
-          method:"GET",
-          headers:{
-              "Content-Type":"application/json",
-              "Authorization":"9MyAPIkey9"
-          }
-      }).then((response)=>
-        response.json()
-      ).then((response)=>{
-        response.map((goal)=>{
-          dispatch(initAddMeta(goal));
-        })
-      }).catch(err=>{
-          console.log(err);
-      })
+   
+    function initFetch(opcion) {
+      let url;
+      if (opcion === "tareas") {
+        url = "http://localhost:3001/tasks/getTasks";
+      } else if (opcion === "metas") {
+        url = "http://localhost:3001/goals/getGoals";
       }
+      fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "9MyAPIkey9"
+        }
+      })
+        .then((response) => 
+        response.json())
+        .then((response) => {
+          if (opcion === "tareas") {
+            response.map((task) => {
+              dispatch(initAddTodo(task));
+            });
+          } else if (opcion === "metas") {
+            response.map((goal) => {
+              dispatch(initAddMeta(goal));
+            })
+          }
+        }).catch(err => {
+          console.log(err);
+        })
     }
+    
   //codigo para llenar las tarjetas dependiendo del estado
   let contenido=null
   if(opcion==="tareas"){
@@ -89,7 +86,7 @@ export function App(props) {
   }
 
 useEffect(()=>{
-  initFetch();
+  initFetch(opcion);
 },[])
   return (
     <div className='App'>
